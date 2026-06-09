@@ -22,11 +22,11 @@ import com.market.modules.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -254,7 +254,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
                     Product p = productMap.get(fav.getProductId());
                     return p != null ? toVO(p) : null;
                 })
-                .filter(vo -> vo != null)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
         return PageResult.of(voList, favResult.getTotal(), favResult.getCurrent(), favResult.getSize());
