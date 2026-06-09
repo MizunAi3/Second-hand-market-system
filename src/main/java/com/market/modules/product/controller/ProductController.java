@@ -43,7 +43,7 @@ public class ProductController {
 
     @Operation(summary = "下架商品")
     @PutMapping("/{id}/off-shelf")
-    public Result<String> offShelf(@PathVariable Long id) {
+    public Result<Void> offShelf(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         productService.offShelf(userId, id);
         return Result.ok("已下架");
@@ -51,7 +51,7 @@ public class ProductController {
 
     @Operation(summary = "重新上架商品")
     @PutMapping("/{id}/on-shelf")
-    public Result<String> onShelf(@PathVariable Long id) {
+    public Result<Void> onShelf(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         productService.onShelf(userId, id);
         return Result.ok("已上架");
@@ -89,7 +89,7 @@ public class ProductController {
 
     @Operation(summary = "收藏商品")
     @PostMapping("/{id}/favorite")
-    public Result<String> favorite(@PathVariable Long id) {
+    public Result<Void> favorite(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         productService.favorite(userId, id);
         return Result.ok("收藏成功");
@@ -97,7 +97,7 @@ public class ProductController {
 
     @Operation(summary = "取消收藏")
     @DeleteMapping("/{id}/favorite")
-    public Result<String> unfavorite(@PathVariable Long id) {
+    public Result<Void> unfavorite(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         productService.unfavorite(userId, id);
         return Result.ok("已取消收藏");

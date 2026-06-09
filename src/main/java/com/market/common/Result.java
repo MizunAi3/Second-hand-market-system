@@ -39,6 +39,10 @@ public class Result<T> {
         return new Result<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), null);
     }
 
+    public static <T> Result<T> ok(String message) {
+        return new Result<>(ResultCode.SUCCESS.getCode(), message, null);
+    }
+
     public static <T> Result<T> ok(T data) {
         return new Result<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }

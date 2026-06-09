@@ -93,6 +93,7 @@ public class GlobalExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public Result<Void> handleOther(Exception e) {
         log.error("系统异常", e);
+        log.error("系统异常", e);
         return Result.fail(ResultCode.ERROR);
     }
 }

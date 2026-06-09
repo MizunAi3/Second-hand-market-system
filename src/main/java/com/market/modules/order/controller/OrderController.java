@@ -41,7 +41,7 @@ public class OrderController {
 
     @Operation(summary = "取消订单（仅待付款）")
     @PutMapping("/{id}/cancel")
-    public Result<String> cancel(@PathVariable Long id) {
+    public Result<Void> cancel(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         orderService.cancelOrder(userId, id);
         return Result.ok("已取消");
@@ -49,7 +49,7 @@ public class OrderController {
 
     @Operation(summary = "卖家发货")
     @PutMapping("/{id}/ship")
-    public Result<String> ship(@PathVariable Long id) {
+    public Result<Void> ship(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         orderService.shipOrder(userId, id);
         return Result.ok("已发货");
@@ -57,7 +57,7 @@ public class OrderController {
 
     @Operation(summary = "确认收货")
     @PutMapping("/{id}/confirm")
-    public Result<String> confirm(@PathVariable Long id) {
+    public Result<Void> confirm(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         orderService.confirmReceive(userId, id);
         return Result.ok("已确认收货");
@@ -65,7 +65,7 @@ public class OrderController {
 
     @Operation(summary = "申请退款")
     @PutMapping("/{id}/refund")
-    public Result<String> requestRefund(@PathVariable Long id) {
+    public Result<Void> requestRefund(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         orderService.requestRefund(userId, id);
         return Result.ok("退款申请已提交");
@@ -73,7 +73,7 @@ public class OrderController {
 
     @Operation(summary = "卖家同意退款")
     @PutMapping("/{id}/approve-refund")
-    public Result<String> approveRefund(@PathVariable Long id) {
+    public Result<Void> approveRefund(@PathVariable Long id) {
         Long userId = SecurityUtils.getCurrentUserId();
         orderService.approveRefund(userId, id);
         return Result.ok("已同意退款");

@@ -202,7 +202,7 @@ public class ProductServiceImpl extends ServiceImpl<ProductMapper, Product> impl
 
         // 不能收藏自己的商品
         if (product.getSellerId().equals(userId)) {
-            throw new BusinessException("不能收藏自己的商品");
+            throw new BusinessException(ResultCode.BAD_REQUEST, "不能收藏自己的商品");
         }
 
         // 检查是否已收藏

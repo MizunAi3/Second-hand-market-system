@@ -50,7 +50,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements
             throw new BusinessException(ResultCode.PRODUCT_NOT_FOUND);
         }
         if (product.getSellerId().equals(buyerId)) {
-            throw new BusinessException("不能购买自己的商品");
+            throw new BusinessException(ResultCode.BAD_REQUEST, "不能购买自己的商品");
         }
 
         // 创建订单

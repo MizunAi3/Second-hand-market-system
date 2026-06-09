@@ -58,7 +58,7 @@ public class AdminController {
 
     @Operation(summary = "禁用/启用用户")
     @PutMapping("/users/{id}/status")
-    public Result<String> toggleUserStatus(
+    public Result<Void> toggleUserStatus(
             @PathVariable Long id,
             @Parameter(description = "状态: 0正常 1禁用") @RequestParam Integer status) {
         adminService.toggleUserStatus(id, status);
@@ -77,7 +77,7 @@ public class AdminController {
 
     @Operation(summary = "强制下架商品")
     @PutMapping("/products/{id}/off-shelf")
-    public Result<String> forceOffShelf(@PathVariable Long id) {
+    public Result<Void> forceOffShelf(@PathVariable Long id) {
         adminService.forceOffShelf(id);
         return Result.ok("已强制下架");
     }

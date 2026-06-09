@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS `user` (
     `nickname`      VARCHAR(64)     DEFAULT NULL             COMMENT '昵称',
     `bio`           VARCHAR(512)    DEFAULT NULL             COMMENT '个人简介',
     `role`          VARCHAR(32)     NOT NULL DEFAULT 'USER'  COMMENT '角色: USER / ADMIN',
+    `credit_score`  INT             NOT NULL DEFAULT 100     COMMENT '信誉分',
     `status`        TINYINT         NOT NULL DEFAULT 0       COMMENT '状态: 0正常 1禁用',
     `last_login_at` DATETIME        DEFAULT NULL             COMMENT '最后登录时间',
     `created_at`    DATETIME        NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -254,5 +255,5 @@ INSERT INTO `category` (`name`, `parent_id`, `sort_order`) VALUES
 ('键盘鼠标', 2, 4);
 
 -- 创建默认管理员账号 (密码: admin123)
-INSERT INTO `user` (`username`, `phone`, `password_hash`, `role`, `status`) VALUES
-('admin', '13800000000', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5Eh', 'ADMIN', 0);
+INSERT INTO `user` (`username`, `phone`, `password_hash`, `role`, `credit_score`, `status`) VALUES
+('admin', '13800000000', '$2a$10$N.zmdr9k7uOCQb376NoUnuTJ8iAt6Z5EHsM8lE9lBOsl7iAt6Z5Eh', 'ADMIN', 100, 0);

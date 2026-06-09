@@ -1,5 +1,6 @@
 package com.market.modules.product.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.market.common.BaseEntity;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class Product extends BaseEntity {
     private BigDecimal originalPrice;
 
     /** 成色: 1全新 2几乎全新 3轻微使用 4明显使用 */
+    @TableField("`condition`")
     private Integer condition;
 
     /** 状态: 1在售 2已售 3已下架 */

@@ -41,7 +41,7 @@ public class UserController {
 
     @Operation(summary = "修改密码")
     @PutMapping("/password")
-    public Result<String> changePassword(@Valid @RequestBody ChangePasswordRequest request) {
+    public Result<Void> changePassword(@Valid @RequestBody ChangePasswordRequest request) {
         Long userId = SecurityUtils.getCurrentUserId();
         userService.changePassword(userId, request);
         return Result.ok("密码修改成功");
