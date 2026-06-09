@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.market.modules.product.mapper.ProductMapper">
+
+    <select id="searchProducts" resultType="com.market.modules.product.entity.Product">
+        SELECT * FROM product
+        WHERE deleted = 0
+        AND status = 1
+        <if test="keyword != null and keyword != ''">
+            AND (title LIKE CONCAT('%', #{keyword}, '%')
+                 OR description LIKE CONCAT('%', #{keyword}, '%'))
+        </if>
+        <if test="categoryId != null">
+            AND category_id = #{categoryId}
+        </if>
+        <if test="minPrice != null">
+            AND price &gt;= #{minPrice}
+        </if>
+        <if test="maxPrice != null">
+            AND price &lt;= #{maxPrice}
+        </if>
+        <if test="condition != null">
+            AND `condition` = #{condition}
+        </if>
+        <if test="location != null and location != ''">
+            AND location LIKE CONCAT('%', #{location}, '%')
+        </if>
+        <choose>
+            <when test="sortField == 'price' and sortOrder == 'asc'">
+                ORDER BY price ASC
+            </when>
+            <when test="sortField == 'price' and sortOrder == 'desc'">
+                ORDER BY price DESC
+            </when>
+            <when test="sortField == 'created_at'">
+                ORDER BY created_at DESC
+            </when>
+            <when test="sortField == 'view_count'">
+                ORDER BY view_count DESC
+            </when>
+            <otherwise>
+                ORDER BY created_at DESC
+            </otherwise>
+        </choose>
+    </select>
+
+</mapper>
